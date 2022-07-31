@@ -12,7 +12,7 @@ let Locations = [
         locationID:"01",
         name:"Chernobyl",
         locdesc:"The Chernobyl disaster occurred 36 years ago, and is widely regarded as one of the worst nuclear disasters in history.",
-        locActions:"You can go North",
+        locActions:">> You can go North",
         locItems:"",
         locNorth:"02",
     },
@@ -20,7 +20,7 @@ let Locations = [
         locationID:"02",
         name:"Abandoned Shack",
         locdesc:"Abandoned because the exclusion zone created by the Chernobyl disaster spans a radius of 30km! And radiation from the disaster can be detected as far as 150,000km away in Belarus!! \n You can go South",
-        locActions:"You can go South",
+        locActions:">> You can go South",
         locItems:">> You see some [COAL]. Pick up?",
         locSouth:"01",
     }
@@ -90,4 +90,5 @@ export function GetLocation(props){
 
 export function pickUpItem(){
     Users[0].inventory = ["[COAL]","[Empty]","[Empty]","[Empty]","[Empty]"];
+    Locations[1].locItems = "";
 }
