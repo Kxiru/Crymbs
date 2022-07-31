@@ -1,4 +1,4 @@
-# Notes for EasyA x PolkaDot Hackathon judges trying to run this app
+# Notes for EasyA x Polkadot Hackathon judges trying to run this app
 Unfortunately this react app will not work well (or at all!!) without the Metamask extension for chrome: https://metamask.io/ \
 To run the app, navigate to the crymbs (lowercase) directory within the Crymbs (uppercase) folder and enter the following commands:
 ```
