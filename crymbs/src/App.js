@@ -1,7 +1,9 @@
 import logo from './crymbs.png';
 import './App.css';
-import {GetUserCredentials, MyInventory} from './Actions';
+import {GetUserCredentials} from './components/GetUserCredentials';
 import {useState} from 'react';
+import './components/MyInventory';
+import InventoryList from './components/MyInventory';
 
 function App() {
   const [username, setUsername] = useState("");
@@ -40,7 +42,8 @@ function App() {
                 <InventoryDecisionHandler
                 signedIn={signedIn}
                 inventoryArray={inventoryArray}
-                username={username}
+                loggedInUsername={username}
+                setInventoryArray={setInventoryArray}
                 />
               </td>
             </tr>
@@ -66,9 +69,10 @@ function App() {
 function InventoryDecisionHandler(props){
   if(props.signedIn){
     return(
-      <MyInventory
+      <InventoryList
         inventoryArray={props.inventoryArray}
-        username={props.username}
+        loggedInUsername={props.username}
+        setInventoryArray={props.setInventoryArray}
       />
     )
   } else {

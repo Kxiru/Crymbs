@@ -44,7 +44,7 @@ body{
 }
 
 .yourHistory{
-  width: 60%;
+  width: 50%;
 }
 
 table {
@@ -53,6 +53,7 @@ table {
 
 .table-tab{
   height: 20vh;
+  color: white;
 }
 
 .signupForm{
