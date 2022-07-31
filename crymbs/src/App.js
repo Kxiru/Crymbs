@@ -2,7 +2,7 @@ import logo from './crymbs.png';
 import './App.css';
 import {GetUserCredentials} from './components/GetUserCredentials';
 import './components/MyInventory';
-import InventoryList from './components/MyInventory';
+import {pickUpItem} from './tempUser';
 import {useState, useEffect} from 'react';
 import Web3 from 'web3';
 // import InventoryList from './components/MyInventory';
@@ -13,6 +13,7 @@ function App() {
   const [walletID, setWalletID] = useState("");
   const [signedIn, setLoginStatus] = useState(false);
   const [curLoc, setCurLoc] = useState("01");
+  const [latestAction, setLatestAction] = useState("");
   // let [inventoryArray, setInventoryArray] = useState(["[Empty]","[Empty]","[Empty]","[Empty]","[Empty]"]);
 
   useEffect(()=>{
@@ -34,7 +35,10 @@ function App() {
         <p> Welcome to Crymbs </p>
       </header>
       <body>
-        <div className="UserStats">Your Username: {username} / Metamask ID: {walletID}</div>
+        <div className="UserStats">Your Username: {username} / Metamask ID: {walletID}
+        <div>Last Action: {latestAction}</div>
+        </div>
+        
         <br></br>
         <table>
           <thead>
@@ -76,6 +80,7 @@ function App() {
                   signedIn={signedIn}
                   setLoginStatus={setLoginStatus}
                   setCurLoc={setCurLoc}
+                  setLatestAction={setLatestAction}
                 />
               </td>
               <td className="table-tab">ALCHEMY WINDOW</td>
@@ -113,6 +118,7 @@ function LoginDecisionHandler(props) {
         signedIn={props.signedIn}
         setLoginStatus={props.setLoginStatus}
         setCurLoc={props.setCurLoc}
+        setLatestAction={props.setLatestAction}
       />
     )
   } else {
@@ -122,7 +128,7 @@ function LoginDecisionHandler(props) {
           <br></br>
           <input className="choiceButton" type="button" value="Go North" onClick={() => props.setCurLoc("02")}></input>
           <input className="choiceButton" type="button" value="Go South" onClick={() => props.setCurLoc("01")}></input>
-          <input className="choiceButton" type="button" value="Pick up Item"></input>
+          <input className="choiceButton" type="button" value="Pick up Item" onClick={() => {pickUpItem(); props.setLatestAction("You picked up [COAL]")}}></input>
           <input className="choiceButton" type="button" value="Create Item"></input>
       </div>
     )

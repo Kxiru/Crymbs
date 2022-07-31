@@ -11,13 +11,17 @@ let Locations = [
     {
         locationID:"01",
         name:"Chernobyl",
-        locdesc:"The Chernobyl disaster occurred 36 years ago, and is widely regarded as one of the worst nuclear disasters in history. \n You can go North.",
+        locdesc:"The Chernobyl disaster occurred 36 years ago, and is widely regarded as one of the worst nuclear disasters in history.",
+        locActions:"You can go North",
+        locItems:"",
         locNorth:"02",
     },
     {
         locationID:"02",
         name:"Abandoned Shack",
         locdesc:"Abandoned because the exclusion zone created by the Chernobyl disaster spans a radius of 30km! And radiation from the disaster can be detected as far as 150,000km away in Belarus!! \n You can go South",
+        locActions:"You can go South",
+        locItems:">> You see some [COAL]. Pick up?",
         locSouth:"01",
     }
 ]
@@ -58,6 +62,9 @@ export function Loc1(){
     return <div>
         <div>Current Location: {Locations[0].name}</div>
         <div>{Locations[0].locdesc}</div>
+        <br></br>
+        <div>{Locations[0].locActions}</div>
+        <div>{Locations[0].locItems}</div>
     </div>
 }
 
@@ -65,6 +72,9 @@ export function Loc2(){
     return <div>
         <div>Current Location: {Locations[1].name}</div>
         <div>{Locations[1].locdesc}</div>
+        <br></br>
+        <div>{Locations[1].locActions}</div>
+        <div>{Locations[1].locItems}</div>
     </div>
 }
 
@@ -76,4 +86,8 @@ export function GetLocation(props){
     } else {
         return <div>Can't find you.</div>
     }
+}
+
+export function pickUpItem(){
+    Users[0].inventory = ["[COAL]","[Empty]","[Empty]","[Empty]","[Empty]"];
 }
