@@ -1,8 +1,10 @@
 import logo from './crymbs.png';
 import './App.css';
 import {GetUserCredentials} from './components/GetUserCredentials';
-import {useState} from 'react';
 import './components/MyInventory';
+import InventoryList from './components/MyInventory';
+import {useState, useEffect} from 'react';
+import Web3 from 'web3';
 // import InventoryList from './components/MyInventory';
 import {GetInventory, BeginGame} from './tempUser';
 
@@ -12,6 +14,18 @@ function App() {
   const [signedIn, setLoginStatus] = useState(false);
   // let [inventoryArray, setInventoryArray] = useState(["[Empty]","[Empty]","[Empty]","[Empty]","[Empty]"]);
 
+  useEffect(()=>{
+    const web3 = new Web3(Web3.givenProvider)
+
+    async function loadAccounts(){
+      const walletID = await web3.eth.requestAccounts();
+      setWalletID(walletID[0])
+    }
+    loadAccounts()
+  }, [walletID])
+
+
+
   return (
     <div className="App">
       <header className="App-header">
@@ -19,7 +33,7 @@ function App() {
         <p> Welcome to Crymbs </p>
       </header>
       <body>
-        <div className="UserStats">Your Username: {username} / {walletID}</div>
+        <div className="UserStats">Your Username: {username} / Metamask ID: {walletID}</div>
         <br></br>
         <table>
           <thead>
@@ -57,7 +71,7 @@ function App() {
               <td className="table-tab">
                 <LoginDecisionHandler
                   setUsername={setUsername}
-                  setWalletID={setWalletID}
+                  //setWalletID={setWalletID}
                   signedIn={signedIn}
                   setLoginStatus={setLoginStatus}
                 />
@@ -93,7 +107,7 @@ function LoginDecisionHandler(props) {
     return (
       <GetUserCredentials 
         setUsername={props.setUsername}
-        setWalletID={props.setWalletID}
+        //setWalletID={props.setWalletID}
         signedIn={props.signedIn}
         setLoginStatus={props.setLoginStatus}
       />
