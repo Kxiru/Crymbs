@@ -60,3 +60,12 @@ table {
   text-align: center;
   font-weight: bold;
 }
+
+.choiceButton{
+  margin: 5px;
+  background-color: beige;
+  color: green;
+  font-family: 'Courier New', Courier, monospace;
+  padding: 5px;
+  border-radius: 5px;
+}
