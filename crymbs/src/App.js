@@ -12,6 +12,7 @@ function App() {
   const [username, setUsername] = useState("");
   const [walletID, setWalletID] = useState("");
   const [signedIn, setLoginStatus] = useState(false);
+  const [curLoc, setCurLoc] = useState("01");
   // let [inventoryArray, setInventoryArray] = useState(["[Empty]","[Empty]","[Empty]","[Empty]","[Empty]"]);
 
   useEffect(()=>{
@@ -49,12 +50,12 @@ function App() {
 
           <tbody>
             <tr className="header-row">
-              <td className="table-tab">
+              <td className="table-tab-game">
                 <BeginGameDecisionHandler
                   signedIn={signedIn}
-                  // inventoryArray={inventoryArray}
+                  curLoc={curLoc}
                   username={username}
-                  // setInventoryArray={setInventoryArray}
+                  setCurLoc={setCurLoc}
                   />
               </td>
               <td className="table-tab">
@@ -74,6 +75,7 @@ function App() {
                   //setWalletID={setWalletID}
                   signedIn={signedIn}
                   setLoginStatus={setLoginStatus}
+                  setCurLoc={setCurLoc}
                 />
               </td>
               <td className="table-tab">ALCHEMY WINDOW</td>
@@ -110,6 +112,7 @@ function LoginDecisionHandler(props) {
         //setWalletID={props.setWalletID}
         signedIn={props.signedIn}
         setLoginStatus={props.setLoginStatus}
+        setCurLoc={props.setCurLoc}
       />
     )
   } else {
@@ -117,8 +120,8 @@ function LoginDecisionHandler(props) {
       <div>
         What choice will you make?
           <br></br>
-          <input className="choiceButton" type="button" value="Go North"></input>
-          <input className="choiceButton" type="button" value="Go South"></input>
+          <input className="choiceButton" type="button" value="Go North" onClick={() => props.setCurLoc("02")}></input>
+          <input className="choiceButton" type="button" value="Go South" onClick={() => props.setCurLoc("01")}></input>
           <input className="choiceButton" type="button" value="Pick up Item"></input>
           <input className="choiceButton" type="button" value="Create Item"></input>
       </div>
@@ -130,7 +133,10 @@ function BeginGameDecisionHandler(props){
   if(props.signedIn){
     return(
       <BeginGame
-        username={props.username}
+      signedIn={props.signedIn}
+      curLoc={props.curLoc}
+      username={props.username}
+      setCurLoc={props.setCurLoc}
       />
     )
   } else {
