@@ -83,7 +83,7 @@ function App() {
                   setLatestAction={setLatestAction}
                 />
               </td>
-              <td className="table-tab">ALCHEMY WINDOW</td>
+              <td className="table-tab" style={{color:'green', fontWeight:'bold'}}>ALCHEMY WINDOW</td>
             </tr>
           </tbody>
         </table>

@@ -36,7 +36,7 @@ body{
   text-align: left;
   font-family: 'Courier New', Courier, monospace;
   font-size: 16px;
-  margin: 10px;
+  margin: 20px;
   padding: 10px;
   border-radius: 5px;
   background-color: grey;
@@ -49,6 +49,7 @@ body{
 
 table {
   width: 100%;
+  padding: 20px;
 }
 
 .table-tab{
@@ -75,4 +76,5 @@ table {
   color: white;
   font-size: 16px;
   text-align: left;
+  padding: 20px;
 }
