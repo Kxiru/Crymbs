@@ -1,27 +1,15 @@
 import logo from './crymbs.png';
 import './App.css';
+import GetUserCredentials from './Actions';
 import {useState} from 'react';
-import {GetUsername, MyInventory} from './Actions'
-import './reducers';
+// import {GetUsername, MyInventory} from './Actions'
 
 
-// function DisplayHandler(props) {
-//   console.log(props.username);
-
-//   if (!props.isLoggedIn) {
-//     return <GetUsername
-//             username={props.username}
-//             setLoginStatus={props.setLoginStatus}
-//             setUsername={props.setUsername}
-//           />
-//   } else {
-//     return <div>Test</div>;
-//   }
-// }
 
 function App() {
-  const [isLoggedIn, setLoginStatus] = useState(false);
   const [username, setUsername] = useState("");
+  const [walletID, setWalletID] = useState("");
+  const [signedIn, setLoginStatus] = useState(false);
 
   return (
     <div className="App">
@@ -30,7 +18,7 @@ function App() {
         <p> Welcome to Crymbs </p>
       </header>
       <body>
-        <div className="UserStats">Your Username: {username}</div>
+        <div className="UserStats">Your Username: {username} : {walletID}</div>
 
         <table>
           <thead>
@@ -56,7 +44,12 @@ function App() {
             </tr>
             <tr>
               <td className="table-tab">
-                {/* <DisplayHandler isLoggedIn={isLoggedIn}/> */}
+                <LoginDecisionHandler
+                  setUsername={setUsername}
+                  setWalletID={setWalletID}
+                  signedIn={signedIn}
+                  setLoginStatus={setLoginStatus}
+                />
               </td>
               <td className="table-tab">creation</td>
             </tr>
@@ -66,6 +59,23 @@ function App() {
       </body>
     </div>
   );
+}
+
+function LoginDecisionHandler(props) {
+  if(!props.signedIn){
+    return (
+      <GetUserCredentials className="dispGetUsername"
+        setUsername={props.setUsername}
+        setWalletID={props.setWalletID}
+        signedIn={props.signedIn}
+        setLoginStatus={props.setLoginStatus}
+      />
+    )
+  } else {
+    return (
+      <div>test</div>
+    )
+  }
 }
 
 export default App;
