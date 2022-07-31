@@ -1,6 +1,6 @@
 import React from 'react';
 
-class GetUserCredentials extends React.Component {
+export class GetUserCredentials extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -47,4 +47,33 @@ class GetUserCredentials extends React.Component {
   }
 }
 
-export default GetUserCredentials;
+export class MyInventory extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: props.username,
+      inventoryArray: props.inventoryArray,
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState();
+  }
+
+  handleSubmit(event) {
+    this.props.setUsername(this.state.username);
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      <div>Temp</div>
+    );
+  }
+}
+
+
+// export default {GetUserCredentials, MyInventory};

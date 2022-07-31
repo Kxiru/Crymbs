@@ -21,10 +21,11 @@
 }
 
 table, th, td{
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
   border-collapse: collapse;
   font-family: 'Courier New', Courier, monospace;
   margin: auto;
+  font-size: 18px;
 }
 
 body{
@@ -34,6 +35,12 @@ body{
 .UserStats{
   text-align: left;
   font-family: 'Courier New', Courier, monospace;
+  font-size: 16px;
+  margin: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: grey;
+  color: white;
 }
 
 .yourHistory{

@@ -1,15 +1,13 @@
 import logo from './crymbs.png';
 import './App.css';
-import GetUserCredentials from './Actions';
+import {GetUserCredentials, MyInventory} from './Actions';
 import {useState} from 'react';
-// import {GetUsername, MyInventory} from './Actions'
-
-
 
 function App() {
   const [username, setUsername] = useState("");
   const [walletID, setWalletID] = useState("");
   const [signedIn, setLoginStatus] = useState(false);
+  let [inventoryArray, setInventoryArray] = useState(["[Empty]","[Empty]","[Empty]","[Empty]","[Empty]"]);
 
   return (
     <div className="App">
@@ -18,8 +16,8 @@ function App() {
         <p> Welcome to Crymbs </p>
       </header>
       <body>
-        <div className="UserStats">Your Username: {username} : {walletID}</div>
-
+        <div className="UserStats">Your Username: {username} / {walletID}</div>
+        <br></br>
         <table>
           <thead>
             <tr>
@@ -39,7 +37,11 @@ function App() {
               </td>
               <td className="table-tab">
                 In your inventory, you have...
-                {/* <MyInventory/> */}
+                <InventoryDecisionHandler
+                signedIn={signedIn}
+                inventoryArray={inventoryArray}
+                username={username}
+                />
               </td>
             </tr>
             <tr>
@@ -51,7 +53,7 @@ function App() {
                   setLoginStatus={setLoginStatus}
                 />
               </td>
-              <td className="table-tab">creation</td>
+              <td className="table-tab">ALCHEMY WINDOW</td>
             </tr>
           </tbody>
         </table>
@@ -61,10 +63,25 @@ function App() {
   );
 }
 
+function InventoryDecisionHandler(props){
+  if(props.signedIn){
+    return(
+      <MyInventory
+        inventoryArray={props.inventoryArray}
+        username={props.username}
+      />
+    )
+  } else {
+    return (
+      <div>Nothing! Sign in!</div>
+    )
+  }
+}
+
 function LoginDecisionHandler(props) {
   if(!props.signedIn){
     return (
-      <GetUserCredentials className="dispGetUsername"
+      <GetUserCredentials 
         setUsername={props.setUsername}
         setWalletID={props.setWalletID}
         signedIn={props.signedIn}
