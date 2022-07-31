@@ -5,12 +5,14 @@ import './components/MyInventory';
 import InventoryList from './components/MyInventory';
 import {useState, useEffect} from 'react';
 import Web3 from 'web3';
+// import InventoryList from './components/MyInventory';
+import {GetInventory, BeginGame} from './tempUser';
 
 function App() {
   const [username, setUsername] = useState("");
   const [walletID, setWalletID] = useState("");
   const [signedIn, setLoginStatus] = useState(false);
-  let [inventoryArray, setInventoryArray] = useState(["[Empty]","[Empty]","[Empty]","[Empty]","[Empty]"]);
+  // let [inventoryArray, setInventoryArray] = useState(["[Empty]","[Empty]","[Empty]","[Empty]","[Empty]"]);
 
   useEffect(()=>{
     const web3 = new Web3(Web3.givenProvider)
@@ -48,15 +50,20 @@ function App() {
           <tbody>
             <tr className="header-row">
               <td className="table-tab">
-                
+                <BeginGameDecisionHandler
+                  signedIn={signedIn}
+                  // inventoryArray={inventoryArray}
+                  username={username}
+                  // setInventoryArray={setInventoryArray}
+                  />
               </td>
               <td className="table-tab">
                 In your inventory, you have...
                 <InventoryDecisionHandler
                 signedIn={signedIn}
-                inventoryArray={inventoryArray}
-                loggedInUsername={username}
-                setInventoryArray={setInventoryArray}
+                // inventoryArray={inventoryArray}
+                username={username}
+                // setInventoryArray={setInventoryArray}
                 />
               </td>
             </tr>
@@ -82,10 +89,10 @@ function App() {
 function InventoryDecisionHandler(props){
   if(props.signedIn){
     return(
-      <InventoryList
-        inventoryArray={props.inventoryArray}
-        loggedInUsername={props.username}
-        setInventoryArray={props.setInventoryArray}
+      <GetInventory
+        // inventoryArray={props.inventoryArray}
+        username={props.username}
+        // setInventoryArray={props.setInventoryArray}
       />
     )
   } else {
@@ -107,7 +114,28 @@ function LoginDecisionHandler(props) {
     )
   } else {
     return (
-      <div>test</div>
+      <div>
+        What choice will you make?
+          <br></br>
+          <input className="choiceButton" type="button" value="Go North"></input>
+          <input className="choiceButton" type="button" value="Go South"></input>
+          <input className="choiceButton" type="button" value="Pick up Item"></input>
+          <input className="choiceButton" type="button" value="Create Item"></input>
+      </div>
+    )
+  }
+}
+
+function BeginGameDecisionHandler(props){
+  if(props.signedIn){
+    return(
+      <BeginGame
+        username={props.username}
+      />
+    )
+  } else {
+    return (
+      <div></div>
     )
   }
 }
